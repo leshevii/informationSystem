@@ -41,6 +41,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Worker.cs" />
     <Compile Include="Department.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="DepartmentFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

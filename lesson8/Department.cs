@@ -4,9 +4,21 @@ namespace lesson8
 {
     public struct Department
     {
+        /// <summary>
+        /// название департамента
+        /// </summary>
         public string name;
+        /// <summary>
+        /// дата создания
+        /// </summary>
         public DateTime created;
+        /// <summary>
+        /// коллекция дочерних департаментов
+        /// </summary>
         public List<Department> departments;
+        /// <summary>
+        /// рабочие
+        /// </summary>
         public List<Worker>     workers;
         
         public int Count { get;  set; }        
@@ -22,12 +34,23 @@ namespace lesson8
             this.created = DateTime.Now;
             this.Count = workers.Count;            
         }
-
+        /// <summary>
+        /// предоставляет возможность изменения названия департамента
+        /// </summary>
+        /// <param name="name"></param>
         public void Edit(string name)
         {
             this.name = name;
         }
-
+        /// <summary>
+        /// Добавляет департамент только с название
+        /// <br></br>
+        /// также позволяет реализовать добавления вложенных департаментов и рабочих
+        /// </summary>
+        /// <param name="name">название</param>
+        /// <param name="dep">список вложенных деп</param>
+        /// <param name="workers">список рабочих</param>
+        /// <returns></returns>
         public Department AddDepartment(string name, List<Department>dep=null, List<Worker>workers=null)
         {        
                 Department department;
@@ -52,6 +75,11 @@ namespace lesson8
             departments.Add(dep);
             return dep;
         }
+        /// <summary>
+        /// Возвращает департамент по индексу
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public Department FindDepartment(int index)
         {
             if(0 <= index && index <= departments.Count)
@@ -74,7 +102,10 @@ namespace lesson8
                 return false;
             }
         }
-
+        /// <summary>
+        /// Сортирует рабочих по имени
+        /// </summary>
+        /// <param name="order"></param>
         public void ReorderFName(int order)
         {
             if(order==1)
@@ -82,6 +113,10 @@ namespace lesson8
             else
                 workers.Sort(Worker.CompareByFNameDesc);
         }
+        /// <summary>
+        /// Сортирует рабочих по фамилии
+        /// </summary>
+        /// <param name="order"></param>
         public void ReorderSName(int order)
         {
             if (order == 1)
@@ -89,6 +124,10 @@ namespace lesson8
             else
                 workers.Sort(Worker.CompareBySNameDesc);
         }
+        /// <summary>
+        /// Сортирует рабочих по зп
+        /// </summary>
+        /// <param name="order"></param>
         public void ReorderWage(int order)
         {
             if (order == 1)
@@ -96,6 +135,10 @@ namespace lesson8
             else
                 workers.Sort(Worker.CompareByWageDesc);
         }
+        /// <summary>
+        /// Сортирует рабочих по возрасту
+        /// </summary>
+        /// <param name="order"></param>
         public void ReorderAge(int order)
         {
             if (order == 1)
@@ -103,7 +146,15 @@ namespace lesson8
             else
                 workers.Sort(Worker.CompareByWageDesc);
         }
-
+        /// <summary>
+        /// Добавляет рабочего в департамент
+        /// </summary>
+        /// <param name="fName">имя</param>
+        /// <param name="sName">фамилия</param>
+        /// <param name="wage">зп</param>
+        /// <param name="age">возраст</param>
+        /// <param name="id">ид заполняется автоматом</param>
+        /// <returns></returns>
         public Worker AddWorker(string fName,string sName, double wage, byte age, int id)
         {
             if(workers.Count < 1_000_000)
